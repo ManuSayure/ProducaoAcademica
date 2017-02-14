@@ -1,6 +1,5 @@
 package principal;
 import principal.Colaborador;
-import principal.
 import java.util.Scanner;
 
 
@@ -8,6 +7,7 @@ public class Main {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
+		Scanner scan = new Scanner(System.in);
 		
 		Colaborador maria = new Colaborador("Maria", "maria@gmail.com");
 		Colaborador jose = new Colaborador("jose", "jose@gmail.com");

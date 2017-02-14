@@ -12,7 +12,7 @@ public class Projetos {
 	private String titulo;
 	private Date dataInicio;
 	private Date dataFim;
-	private String AgenciaFianciadora;
+	private String AgenciaFinanciadora;
 	private Double valorFinanciado;
 	private String objetivo;
 	private String descricao;
@@ -42,10 +42,10 @@ public class Projetos {
 	public void setDataFim(Date dataFim) {
 		this.dataFim = dataFim;
 	}
-	public String getAgenciaFianciadora() {
+	public String getAgenciaFinanciadora() {
 		return AgenciaFianciadora;
 	}
-	public void setAgenciaFianciadora(String agenciaFianciadora) {
+	public void setAgenciaFinanciadora(String agenciaFianciadora) {
 		AgenciaFianciadora = agenciaFianciadora;
 	}
 	public Double getValorFinanciado() {
@@ -121,7 +121,7 @@ public class Projetos {
 	}
 	
 	// Usando iterator para percorrer a lista Collaborator e verificar por professores e alunos	
-		public boolean checaGradEstudanteProjetos(){		
+		 public boolean checaGradEstudanteProjetos(){		
 			Iterator<Colaborador> it = participantes.iterator();
 		      while(it.hasNext()) {
 		         Object element = it.next();
@@ -174,30 +174,30 @@ public class Projetos {
 		}
 
 				
-	public void addPublication(Publication publication){
-			publicacoes.add(publication);
+	public void addPublicacao(Publicacoes publicacao){
+			publicacoes.add(publicacao);
 		}
 		
-	public List<Publication> getPublications() {
-		return publications;
+	public List<Publicacoes> getPublicacoes() {
+		return publicacoes;
 	}
 
 	public String toString(){
-		return title;
+		return titulo;
 	}
 
 	//Informações do projeto
 	public void report(){
-		System.out.println("Titulo: "+this.getTitle()+
-				"\nData Inicio: "+this.getBeginDate()+
-				"\nData Final: "+this.getEndDate()+
-				"\nAgencia Financiadora: "+this.getFundingAgency()+
-				"\nValor Financiado: "+this.getFinancedValue()+
-				"\nObjetivo: "+this.getObjective()+
-				"\nDescricao: "+this.getDescription()+
+		System.out.println("Titulo: "+this.getTitulo()+
+				"\nData Inicio: "+this.getDataInicio()+
+				"\nData Final: "+this.getDataFim()+
+				"\nAgencia Financiadora: "+this.getAgenciaFinanciadora()+
+				"\nValor Financiado: "+this.getValorFinanciado()+
+				"\nObjetivo: "+this.getObjetivo()+
+				"\nDescricao: "+this.getDescricao()+
 				"\nStatus: "+this.getStatus()+
-				"\nColaboradores: "+this.getParticipants()+			
-				"\nProducao Academica: "+this.getPublications()
+				"\nColaboradores: "+this.getParticipantes()+			
+				"\nProducao Academica: "+this.getPublicacoes()
 				);
 		
 	}
