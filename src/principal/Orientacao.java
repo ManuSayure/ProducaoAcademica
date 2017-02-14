@@ -3,6 +3,7 @@ import principal.Professor;
 import principal.Estudante;
 import principal.LabPesquisa;
 
+
 public class Orientacao {
 			
 	private Professor orientador;
@@ -12,8 +13,7 @@ public class Orientacao {
 		// Vinculando aluno e professor a uma orientação	
 			public Orientacao(String titulo,Professor orientador,Estudante estudante){
 				this.titulo = titulo;
-				this.setOrientador(orientador);
-				orientacao.addOrientacao(this);
+				this.orientador = orientador;
 				this.estudante = estudante;
 				
 			}						
@@ -38,5 +38,6 @@ public class Orientacao {
 			public String toString(){
 				return titulo;
 			}	
+					
 
 }

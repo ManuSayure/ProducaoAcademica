@@ -17,6 +17,7 @@ public class Main {
 		System.out.println(maria);
 		System.out.println(ana);
 		System.out.println(jose);
+		reportar();
 
 	}
 

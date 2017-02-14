@@ -86,18 +86,12 @@ public class LabPesquisa {
 			return publicacoes;
 		}
 
-		public void addOrientacao(Orientacao o){
-			if(!(this.orientacoes.contains(o))){
-				orientacoes.add(o);					
-			}else System.out.println("Orientacao ja pertencente ao Lab!");
-		}
-		
 		public ArrayList<Orientacao> getOrientacoes(){
 			return orientacoes;
 		}
 
 	// Relatório contendo todas as informações de um laboratório de pesquisa	
-		protected void report(){
+		protected void reportar(){
 			this.countProjectsByStatus();
 			System.out.println("Numero de colaboradores: "+colaboradores.size()+
 							   "\nNumero de projetos em elaboracao: "+N_elabProjs+ 
@@ -105,8 +99,8 @@ public class LabPesquisa {
 							   "\nNumero de projetos concluidos: "+N_conclProjs+ 
 							   "\nNumero total de projetos: "+projetos.size()+
 							   "\nNumero de producoes academicas por tipo de producao: "+
-							   "\n -Publicacoes: "+publicacoes.size()+
-							   "\n -Orientacoes: "+orientacoes.size()); 
+							   "\n -Publicacoes: "+publicacoes.size());
+							  // "\n -Orientacoes: "+orientacoes.size()); 
 		}  
 		
 	}

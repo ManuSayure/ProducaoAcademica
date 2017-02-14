@@ -1,6 +1,7 @@
 package principal;
 import principal.Colaborador;
 import principal.Status;
+import principal.LabPesquisa;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -12,7 +13,7 @@ public class Projetos {
 	private String titulo;
 	private Date dataInicio;
 	private Date dataFim;
-	private String AgenciaFinanciadora;
+	private String agenciaFinanciadora;
 	private Double valorFinanciado;
 	private String objetivo;
 	private String descricao;
@@ -43,10 +44,10 @@ public class Projetos {
 		this.dataFim = dataFim;
 	}
 	public String getAgenciaFinanciadora() {
-		return AgenciaFianciadora;
+		return agenciaFinanciadora;
 	}
-	public void setAgenciaFinanciadora(String agenciaFianciadora) {
-		AgenciaFianciadora = agenciaFianciadora;
+	public void setAgenciaFinanciadora(String agenciaFinanciadora) {
+		this.agenciaFinanciadora = agenciaFinanciadora;
 	}
 	public Double getValorFinanciado() {
 		return valorFinanciado;
@@ -73,62 +74,26 @@ public class Projetos {
 	public String getStatus() {
 		return status.toString();
 	}
-	public void setStatus(String status) {
-		if (status == "Em Andamento"){
-			if (
-					getTitulo()               == null ||
-					getDataInicio()           == null ||
-					getDataFim()              == null ||
-					getAgenciaFianciadora()   == null ||
-					getValorFinanciado()      == 0.0  ||
-					getObjetivo()             == null ||
-					getDescricao()            == null ||
-					getParticipantes().size() == 0
-				)
-			{
-				System.out.println("Projeto Ainda em Elaboração, por favor preencha todos os dados.");
-			}
-			else if (ChecaGradEstudanteProjetos()){
-				System.out.println("Projeto Não pode ir pra Em Andamento, pois existe um aluno com mais de 2 projetos Em Andmento.");
-			}
-			else{
-				this.status = Status.EM_ANDAMENTO;
-				}
+	public void addPublicacao(Publicacoes publicacao){
+			publicacoes.add(publicacao);
 		}
-		else if (status == "Concluido")
-		{
-			if(this.getPublicaçoes().size() == 0){
-				System.out.println("Projeto nao pode ser concluido, pois não existe publicacoes");
-			}
-			else{
-				this.status = Status.CONCLUIDO;
-				Iterator<Colaborador> it = participantes.iterator();
-			      while(it.hasNext()) {
-			         Object element = it.next();
-			         if (element instanceof GradEstudante){
-			        	 ((GradStudent) element).addNumeroProjeto(-1);			        	        		 
-				      }
-				
-				
-			}
-		}
-		else if (this.status == Status.EM_ELABORACAO){
-			System.out.println("Projeto nao esta Em Andamento pra ser concluido");			
-		}
-		else{
-			System.out.println("Projeto ja esta Concluido");
-		}
+		
+	public List<Publicacoes> getPublicacoes() {
+		return publicacoes;
 	}
-	
+
+	public String toString(){
+		return titulo;
+	}
 	// Usando iterator para percorrer a lista Collaborator e verificar por professores e alunos	
-		 public boolean checaGradEstudanteProjetos(){		
+		 public  boolean checaGradEstudanteProjetos(){		
 			Iterator<Colaborador> it = participantes.iterator();
 		      while(it.hasNext()) {
-		         Object element = it.next();
-		         if (element instanceof GradEstudante)
+		         Object elemento = it.next();
+		         if (elemento instanceof GradEstudante)
 		         {
-		        	 if(((GradEstudante) element).getNumeroProjetos()<2){
-		        		 ((GradEstudante) element).somaNumeroProjetos(1);
+		        	 if(((GradEstudante) elemento).getNumeroProjetos()<2){
+		        		 ((GradEstudante) elemento).somaNumeroProjetos(1);
 		        		 return false;	         		 
 		        	 }
 		         }else return false; /// Caso o colaborador nem seja aluno de graduacao         
@@ -141,14 +106,64 @@ public class Projetos {
 		{
 		      Iterator<Colaborador> it = participantes.iterator();
 		      while(it.hasNext()) {
-		         Object element = it.next();
-		         if (element instanceof Professor)
+		         Object elemento = it.next();
+		         if (elemento instanceof Professor)
 		         {
 		        	 return true;
 		         }
 		      }
 		      return false;
 		}
+	public void setStatus(String status) {
+		if (status == "Em Andamento"){
+			if (
+					getTitulo()               == null ||
+					getDataInicio()           == null ||
+					getDataFim()              == null ||
+					getAgenciaFinanciadora()   == null ||
+					getValorFinanciado()      == 0.0  ||
+					getObjetivo()             == null ||
+					getDescricao()            == null ||
+					getParticipantes().size() == 0
+				)
+			{
+				System.out.println("Projeto Ainda em Elaboração, por favor preencha todos os dados.");
+			}
+			else if (checaGradEstudanteProjetos()){
+				System.out.println("Projeto Não pode ir pra Em Andamento, pois existe um aluno com mais de 2 projetos Em Andmento.");
+			}
+			else{
+				this.status = Status.EM_ANDAMENTO;
+				}
+		}
+		else if (status == "Concluido")
+		{
+			if(this.getPublicacoes().size() == 0){
+				System.out.println("Projeto nao pode ser concluido, pois não existe publicacoes");
+			}
+			else{
+				this.status = Status.CONCLUIDO;
+				Iterator<Colaborador> it = participantes.iterator();
+			      while(it.hasNext()) {
+			         Object elemento = it.next();
+			         if (elemento instanceof GradEstudante){
+			        	 ((GradEstudante) elemento).somaNumeroProjetos(-1);			        	        		 
+				      }
+				
+				
+			      }
+			 }
+		}
+		else if (this.status == Status.EM_ELABORACAO){
+			System.out.println("Projeto nao esta Em Andamento pra ser concluido");			
+		}
+		else{
+			System.out.println("Projeto ja esta Concluido");
+		}
+}
+	
+	
+		
 		//Restrição de professores como participantes em um projeto	
 		public void addParticipante(Colaborador participante)
 		{
@@ -157,13 +172,13 @@ public class Projetos {
 				if (participante instanceof Professor)
 				{
 					participantes.add(participante);
-					participante.addProjeto(this);
+					//participante.addProjeto(this);
 					
 				} else {
 					if (checaProfessor())
 					{
 						participantes.add(participante);
-						participante.addProjeto(this);
+						//participante.addProjeto(this);
 					} else {
 						System.out.println("Insira um Professor primeiro!");
 					}
@@ -174,20 +189,10 @@ public class Projetos {
 		}
 
 				
-	public void addPublicacao(Publicacoes publicacao){
-			publicacoes.add(publicacao);
-		}
-		
-	public List<Publicacoes> getPublicacoes() {
-		return publicacoes;
-	}
-
-	public String toString(){
-		return titulo;
-	}
+	
 
 	//Informações do projeto
-	public void report(){
+	public void reportar(){
 		System.out.println("Titulo: "+this.getTitulo()+
 				"\nData Inicio: "+this.getDataInicio()+
 				"\nData Final: "+this.getDataFim()+
@@ -205,5 +210,5 @@ public class Projetos {
 		
 	}
 
-	}
+
 
