@@ -11,8 +11,8 @@ import java.util.Iterator;
 
 public class Projetos {
 	private String titulo;
-	private Date dataInicio;
-	private Date dataFim;
+	private String dataInicio;
+	private String dataFim;
 	private String agenciaFinanciadora;
 	private Double valorFinanciado;
 	private String objetivo;
@@ -22,25 +22,33 @@ public class Projetos {
 	
 	private Status status;
 	
+	public Projetos(String titulo, String dataInicio, String dataFim, String agenciaFinanciadora, double valorFinanciado, String objetivo, String descricao){
+		this.setTitulo(titulo);
+		this.setDataInicio(dataInicio);
+		this.setDataFim(dataFim);
+		this.setAgenciaFinanciadora(agenciaFinanciadora);
+		this.setValorFinanciado(valorFinanciado);
+		this.setObjetivo(objetivo);
+		this.setDescricao(descricao);
+		status = Status.EM_ELABORACAO;
+	}
 	public String getTitulo() {
 		return titulo;
 	}
 	public void setTitulo(String titulo) {
 		this.titulo = titulo;
 	}
-	public Projetos() {
-		super();
-	}
-	public Date getDataInicio() {
+	
+	public String getDataInicio() {
 		return dataInicio;
 	}
-	public void setDataInicio(Date dataInicio) {
+	public void setDataInicio(String dataInicio) {
 		this.dataInicio = dataInicio;
 	}
-	public Date getDataFim() {
+	public String getDataFim() {
 		return dataFim;
 	}
-	public void setDataFim(Date dataFim) {
+	public void setDataFim(String dataFim) {
 		this.dataFim = dataFim;
 	}
 	public String getAgenciaFinanciadora() {

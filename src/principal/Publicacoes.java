@@ -3,16 +3,21 @@ import principal.Projetos;
 import principal.Colaborador;
 import principal.Status;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
-public class Publicacoes {
+public class Publicacoes {	
 	private List<Colaborador>autores = new ArrayList<Colaborador>();
 	private String titulo;
 	private String nomeConferencia;
-	private Date anoPub;
+	private int anoPub;
 	private Projetos projetoAssociado;
 	
+	public Publicacoes(String titulo, String nomeConferencia, int anoPub,Projetos projetoAssociado) {	
+		this.titulo = titulo;
+		this.nomeConferencia = nomeConferencia;
+		this.anoPub = anoPub;
+		this.projetoAssociado = projetoAssociado;
+	}
 	public Projetos getProjetoAssociado() {
 		return projetoAssociado;
 	}
@@ -26,7 +31,9 @@ public class Publicacoes {
 			this.projetoAssociado = projetoAssociado;
 			System.out.println("Publicação Associada ao projeto: "+ projetoAssociado.toString()+ "com sucesso.");
 		}
-		System.out.println("A Publicação Não pode ser Asociada a esse projeto ");
+		else {
+			System.out.println("A Publicação Não pode ser Associada a esse projeto ");
+		}
 		
 	}
 	/*Autor*/
@@ -53,10 +60,10 @@ public class Publicacoes {
 		this.nomeConferencia = nomeConferencia;
 	}
 	/*publicaçao*/
-	public Date getAnoPublicacao() {
+	public int getAnoPublicacao() {
 		return anoPub;
 	}
-	public void setAnoPublicacao(Date anoPublicacao) {
+	public void setAnoPublicacao(int anoPublicacao) {
 		this.anoPub = anoPublicacao;
 	}
 	

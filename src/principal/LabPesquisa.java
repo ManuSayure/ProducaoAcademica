@@ -5,6 +5,9 @@ import java.util.Iterator;
 import principal.Publicacoes;
 import principal.Colaborador;
 import principal.Projetos;
+import principal.Professor;
+import principal.Publicacoes;
+
 
 
 public class LabPesquisa {
